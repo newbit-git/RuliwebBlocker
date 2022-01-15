@@ -1,0 +1,22 @@
+{
+    "name": "Ruliweb Blocker",
+    "version": "0.0.0.1",
+    "description": "Blocker extension for Ruliweb.com",
+    "manifest_version": 2,
+    "content_scripts": [
+        {
+            "matches": [
+              "*://bbs.ruliweb.com/*",
+               "*://m.ruliweb.com/*"
+            ],
+            "js": ["res/jquery.min.js","res/action.js"]
+        }
+        ]
+        ,"permissions": [
+            "storage",
+            "tabs"
+         ]
+        ,"browser_action": {
+        "default_popup": "res/popup.html"
+    }
+}

@@ -1,0 +1,54 @@
+﻿<html>
+    <head>
+        <meta charset="utf-8" />
+        <style>
+            body {
+                width: 500px;
+            }
+            #mainDiv{
+                max-height:460px;
+                overflow-y:scroll;
+            }
+            button {
+                background-color: #336dab;
+                border: none;
+                color: white;
+                padding: 12px 24px;
+                text-align: center;
+                font-size: 16px;
+            }
+            #btnExport
+            {
+                margin-left:72px;
+            }
+            input {
+                max-width: 120px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="mainDiv">
+            <table id="blockTable">
+                <thead>
+                    <tr>
+                        <th id="delHead">Del</th>
+                        <th>ID</th>
+                        <th>닉네임</th>
+                        <th>색</th>
+                        <th>코멘트</th>
+                        <th id="blockHead">Block</th>
+                    </tr>
+                </thead>
+                <tbody id="mainTable"/>
+            </table>
+        </div>
+
+        <button id="btnSave">Save</button>
+        <button id="btnExport">내보내기</button>
+        
+        <lable>불러오기</lable>
+        <input type="file" id="inputElement" style="visible:hidden"/>
+        <script src="jquery.min.js"></script>
+        <script src="popup.js"></script>
+    </body>
+</html>
