@@ -2,7 +2,7 @@
     "name": "Ruliweb Blocker",
     "version": "0.0.0.1",
     "description": "Blocker extension for Ruliweb.com",
-    "manifest_version": 2,
+    "manifest_version": 3,
     "content_scripts": [
         {
             "matches": [
@@ -16,7 +16,7 @@
             "storage",
             "tabs"
          ]
-        ,"browser_action": {
+        ,"action": {
         "default_popup": "res/popup.html"
     }
 }
