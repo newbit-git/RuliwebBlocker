@@ -87,6 +87,26 @@ function block(refresh)
         });
     }
 
+    if (blockedTITLE.length > 0 && '' != blockedTITLE[0])
+    {
+        // Title Filtering
+        $('td.subject').each(function() {
+            var a = $(this.children[0]).find('a.deco')[0];
+
+             blockedTITLE.every(tt => {
+                if ($(a).text().includes(tt))
+                {
+                    $(a).text("차단 (" + tt + ")");
+                    $(a).css("font-weight","Bold");
+
+                    return false;
+                }
+
+                return true;
+            });
+        });
+    }
+
     // PC-List
     $('td.writer').each(function() {
         var a = this.children[0];
@@ -126,7 +146,7 @@ function block(refresh)
 
             return true;
         });
-        
+
         // 우클릭으로 유저 추가
         if ('' != id & undefined != id && false === refresh)
             $(this).mousedown(function(event) {
@@ -277,6 +297,18 @@ function block(refresh)
 
             return true;
         });
+
+        
+         blockedTITLE.every(tt => {
+                if ($(this).text().includes(tt))
+                {
+                    $(this).text("차단 (" + tt + ")");
+                    $(this).css("font-weight","Bold");
+
+                    return false;
+                }
+             return true;
+         });
     });
 }
 
