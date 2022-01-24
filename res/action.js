@@ -81,7 +81,7 @@ function block(refresh)
         // 모바일-게시판 차단 (ex:사정게)
         $('tr.other>td.subject').each(function() {
             blockedBBS.every(bbs => {
-                if ($($(this).children("strong")).html().includes(bbs))
+                if ($($(this).find("strong")[0]).html().includes(bbs))
                     $($(this).parent()).hide();
             });
         });
