@@ -1,21 +1,27 @@
 ﻿var blocked = [];
+var blockedBBS = [];
+var blockedTITLE = [];
 
 $(document).ready(function() {
     init(false);
 });
 
-function load()
-{
-    chrome.storage.local.get(['rBlock'], (data) => {
-        if (undefined == data.rBlock)
-            blocked = [];
-        else
-            blocked = JSON.parse(data.rBlock);
-    });
-}
-
 function init(refresh)
 {
+     chrome.storage.local.get(['rTitleBlock'], (data) => {
+        if (undefined == data.rTitleBlock)
+            blockedTITLE = [];
+        else
+            blockedTITLE = data.rTitleBlock.split(',');
+    });
+
+    chrome.storage.local.get(['rBbsBlock'], (data) => {
+        if (undefined == data.rBbsBlock)
+            blockedBBS = [];
+        else
+            blockedBBS = data.rBbsBlock.split(',');
+    });
+
     chrome.storage.local.get(['rBlock'], (data) => {
         if (undefined == data.rBlock)
             blocked = [];
@@ -62,6 +68,25 @@ function onRightClick(e)
 
 function block(refresh)
 {
+    if (blockedBBS.length > 0 && '' != blockedBBS[0])
+    {
+        // PC-게시판 차단 (ex:사정게)
+        $('tr.best>td.divsn').each(function() {
+            blockedBBS.every(bbs => {
+                if ($(this).html().includes(bbs))
+                    $($(this).parent()).hide();
+            });
+        });
+
+        // 모바일-게시판 차단 (ex:사정게)
+        $('tr.other>td.subject').each(function() {
+            blockedBBS.every(bbs => {
+                if ($((this).children("strong")).html().includes(bbs))
+                    $($(this).parent()).hide();
+            });
+        });
+    }
+
     // PC-List
     $('td.writer').each(function() {
         var a = this.children[0];

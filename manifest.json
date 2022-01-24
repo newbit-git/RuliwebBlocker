@@ -3,6 +3,7 @@
     "version": "0.0.0.1",
     "description": "Blocker extension for Ruliweb.com",
     "manifest_version": 3,
+    //"update_url": "https://ruliwebblocker.azurewebsites.net/updates.xml",
     "content_scripts": [
         {
             "matches": [

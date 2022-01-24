@@ -7,6 +7,23 @@ $(document).ready(function() {
 
 function load()
 {
+    // 게시판 차단
+    chrome.storage.local.get(['rBbsBlock'], (data) => {
+        if (undefined == data.rBbsBlock)
+            return;
+
+        $('#bbsBlock').val(data.rBbsBlock);
+    });
+
+    // 타이틀 차단
+    chrome.storage.local.get(['rTitleBlock'], (data) => {
+        if (undefined == data.rTitleBlock)
+            return;
+
+        $('#titleBlock').val(data.rTitleBlock);
+    });
+
+    // 작성자 차단 목록
     chrome.storage.local.get(['rBlock'], (data) => {
         if (undefined == data.rBlock)
             return;
@@ -55,7 +72,10 @@ document.getElementById("btnSave").onclick = function()
             blocked.push ({id : userId, orig: orig, color: color, comment: comment, block: checked});
     });
 
-    chrome.storage.local.set({rBlock: JSON.stringify(blocked)});
+    var blockedBBS = $('#bbsBlock').val();
+    var blockedTITLE = $('#titleBlock').val();
+
+    chrome.storage.local.set({rBlock: JSON.stringify(blocked), rBbsBlock: blockedBBS, rTitleBlock: blockedTITLE});
 
     chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
         chrome.tabs.sendMessage(
@@ -102,7 +122,10 @@ inputElement.onchange = (e) => {
      {
          try
          {
-             chrome.storage.local.set({rBlock: text});
+             var blockedBBS = $('#bbsBlock').val();
+             var blockedTITLE = $('#titleBlock').val();
+
+             chrome.storage.local.set({rBlock: text,  rBbsBlock: blockedBBS, rTitleBlock: blockedTITLE});
              load();
          }catch(e)
          {
