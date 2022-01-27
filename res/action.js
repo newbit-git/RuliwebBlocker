@@ -92,9 +92,10 @@ function block(refresh)
         // Title Filtering
         $('td.subject').each(function() {
             var a = $(this.children[0]).find('a.deco')[0];
+            var cat = $(this.children[0]).find('a')[0];
 
              blockedTITLE.every(tt => {
-                if ($(a).text().includes(tt))
+                if ($(a).text().includes(tt) || $(cat).text().includes(tt))
                 {
                     $(a).text("차단 (" + tt + ")");
                     $(a).css("font-weight","Bold");
