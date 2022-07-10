@@ -110,7 +110,7 @@ function block(refresh)
 
     // PC-List
     $('td.writer').each(function() {
-        var a = this.children[0];
+        var a = $(this).find('a')[0];
         var id = '';
 
         if (undefined == a) // for the 'best' page
