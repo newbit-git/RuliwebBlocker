@@ -68,7 +68,7 @@ function onRightClick(e)
 
 function block(refresh)
 {
-    if (blockedBBS.length > 0 && '' != blockedBBS[0])
+    if (blockedBBS.length > 0 && '' !== blockedBBS[0] && null !== blockedBBS[0] && undefined !== blockedBBS[0])
     {
         // PC-게시판 차단 (ex:사정게)
         $('tr.best>td.divsn').each(function() {
@@ -87,7 +87,7 @@ function block(refresh)
         });
     }
 
-    if (blockedTITLE.length > 0 && '' != blockedTITLE[0])
+    if (blockedTITLE.length > 0 && '' !== blockedTITLE[0] && null !== blockedTITLE[0] && undefined !== blockedTITLE[0])
     {
         // Title Filtering
         $('td.subject').each(function() {
@@ -299,17 +299,17 @@ function block(refresh)
             return true;
         });
 
-        
-         blockedTITLE.every(tt => {
-                if ($(this).text().includes(tt))
-                {
-                    $(this).text("차단 (" + tt + ")");
-                    $(this).css("font-weight","Bold");
+         if (blockedTITLE.length > 0 && '' !== blockedTITLE[0] && null !== blockedTITLE[0] && undefined !== blockedTITLE[0]) {
+             blockedTITLE.every(tt => {
+                 if ($(this).text().includes(tt)) {
+                     $(this).text("차단 (" + tt + ")");
+                     $(this).css("font-weight", "Bold");
 
-                    return false;
-                }
-             return true;
-         });
+                     return false;
+                 }
+                 return true;
+             });
+         }
     });
 }
 
